@@ -1,9 +1,7 @@
-## <!-- .claude/skills/ui-designer/SKILL.md -->
-
+---
 name: ui-designer
 description: Design modern web interfaces for Flask applications. Activate when user requests UI design, styling or layout improvements.
 allowed-tools: Read, Bash(python:\*), Edit, Write
-
 ---
 
 # UI Designer Skill
