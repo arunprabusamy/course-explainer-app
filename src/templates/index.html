@@ -1,22 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <title>Course Explainer</title>
-</head>
-<body>
-    {% include 'layout.html' %}
-    <div class="container">
-        <h1>Welcome to the Course Explainer</h1>
-        <p>This application provides an overview of various courses available.</p>
-        <h2>Available Courses</h2>
-        <ul>
-            {% for course in courses %}
-            <li><a href="{{ url_for('course', course_id=loop.index) }}">{{ course.title }}</a></li>
-            {% endfor %}
-        </ul>
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">Expand Your Knowledge</h1>
+        <p class="hero-subtitle">Explore our curated collection of courses designed to help you master new skills and advance your career.</p>
+        <a href="#courses" class="hero-cta">Explore Courses</a>
     </div>
-</body>
-</html>
+</section>
+
+<section id="courses" class="courses-section">
+    <div class="courses-container">
+        <h2 class="section-title">Available Courses</h2>
+        <div class="courses-grid">
+            {% for course in courses %}
+            <article class="course-card">
+                <div class="course-card-header">
+                    <h3 class="course-title"><a href="{{ url_for('course', course_id=loop.index) }}">{{ course.title }}</a></h3>
+                </div>
+                <div class="course-card-body">
+                    <p class="course-description">{{ course.description }}</p>
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Instructor</span>
+                            <span class="meta-value">{{ course.instructor }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Duration</span>
+                            <span class="meta-value">{{ course.duration }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Topics</span>
+                            <span class="meta-value">{{ course.topics|length }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card-footer">
+                    <a href="{{ url_for('course', course_id=loop.index) }}" class="course-link">View Details</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
