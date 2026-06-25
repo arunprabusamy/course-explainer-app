@@ -1,0 +1,116 @@
+{% extends 'layout.html' %}
+
+{% block title %}Contact Us - Course Explainer{% endblock %}
+
+{% block content %}
+<h1>Contact Us</h1>
+<p>We'd love to hear from you! Fill out the form below to get in touch with our team, or connect with us on social media.</p>
+
+<div class="contact-wrapper">
+  <!-- Contact Form Section -->
+  <div class="contact-form-container">
+    {% if success %}
+    <div class="alert-success" role="alert" aria-live="polite">
+      Thank you! Your message has been sent successfully. We'll get back to you soon.
+    </div>
+    {% endif %}
+
+    <form action="{{ url_for('contact') }}" method="POST" novalidate>
+      <div class="form-group">
+        <label for="name" class="form-label">Name <span class="required">*</span></label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="form-input {% if errors and errors.name %}error{% endif %}"
+          placeholder="Enter your full name"
+          value="{{ name if name else '' }}"
+          required
+          aria-required="true"
+          {% if errors and errors.name %}aria-invalid="true" aria-describedby="name-error"{% endif %}
+        >
+        {% if errors and errors.name %}
+        <span id="name-error" class="form-error" role="alert">{{ errors.name }}</span>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="form-label">Email <span class="required">*</span></label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-input {% if errors and errors.email %}error{% endif %}"
+          placeholder="your.email@example.com"
+          value="{{ email if email else '' }}"
+          required
+          aria-required="true"
+          autocomplete="email"
+          {% if errors and errors.email %}aria-invalid="true" aria-describedby="email-error"{% endif %}
+        >
+        {% if errors and errors.email %}
+        <span id="email-error" class="form-error" role="alert">{{ errors.email }}</span>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="address" class="form-label">Address <span class="required">*</span></label>
+        <textarea
+          id="address"
+          name="address"
+          class="form-textarea {% if errors and errors.address %}error{% endif %}"
+          placeholder="Enter your address"
+          required
+          aria-required="true"
+          {% if errors and errors.address %}aria-invalid="true" aria-describedby="address-error"{% endif %}
+        >{{ address if address else '' }}</textarea>
+        {% if errors and errors.address %}
+        <span id="address-error" class="form-error" role="alert">{{ errors.address }}</span>
+        {% endif %}
+      </div>
+
+      <button type="submit" class="btn-submit" aria-label="Submit contact form">Send Message</button>
+    </form>
+  </div>
+
+  <!-- Social Media Section -->
+  <div class="social-media-container">
+    <h2 class="social-heading">Follow Us</h2>
+    <ul class="social-links">
+      <li>
+        <a href="https://twitter.com/courseexplainer" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Visit our Twitter profile (opens in new window)">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+          </svg>
+          <span>Twitter</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://linkedin.com/company/courseexplainer" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Visit our LinkedIn profile (opens in new window)">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/courseexplainer" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Visit our GitHub profile (opens in new window)">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://facebook.com/courseexplainer" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook profile (opens in new window)">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+          </svg>
+          <span>Facebook</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
